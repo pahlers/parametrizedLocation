@@ -1,0 +1,32 @@
+{
+  "name": "parametrizedLocation",
+  "version": "0.1.0",
+  "description": "Extend angular.$location with support for a parametrized URL template with parameters prefixed by `:`.",
+  "main": "dist/parametrizedLocation.js",
+  "scripts": {
+    "test": "test/parametrizedLocationSpec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eonlepapillon/parametrizedLocation.git"
+  },
+  "keywords": [
+    "angular",
+    "$location"
+  ],
+  "author": "Peter Ahlers (eonlepapillon)",
+  "homepage": "https://plus.google.com/u/0/109953552136391486842",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eonlepapillon/parametrizedLocation/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-cli": ">= 0.1.7",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-karma": "latest",
+    "grunt-zip": "*"
+  }
+}
