@@ -12,7 +12,14 @@
   },
   "keywords": [
     "angular",
-    "$location"
+    "$location",
+    "$resource",
+    "parametrized",
+    "template",
+    "params",
+    "url",
+    "path",
+    "hash"
   ],
   "author": "Peter Ahlers (eonlepapillon)",
   "homepage": "https://plus.google.com/u/0/109953552136391486842",
