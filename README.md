@@ -40,3 +40,5 @@ $location.hash(':foo', {foo:'bar'});
 * tests
 
 ##Thanks
+* Gruntfile inspiration: https://github.com/mgonto/restangular
+* Code inspiration: Angular $http and $resource
