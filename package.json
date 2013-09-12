@@ -1,6 +1,6 @@
 {
   "name": "parametrizedLocation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Extend angular.$location with support for a parametrized URL template with parameters (like angular.$resource) prefixed by `:`.",
   "main": "dist/parametrizedLocation.js",
   "scripts": {
