@@ -1,6 +1,6 @@
 {
   "name": "parametrizedLocation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/eonlepapillon/parametrizedLocation",
   "authors": [
     "Peter Ahlers (eonlepapillon)"
@@ -27,9 +27,9 @@
     "hash"
   ],
   "dependencies": {
-    "angular": "~1.0.8"
   },
   "devDependencies": {
-    "angular-mocks": "~1.0.8"
+    "angular": "~1.2.0",
+    "angular-mocks": "~1.2.0"
   }
 }
