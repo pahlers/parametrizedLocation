@@ -1,4 +1,4 @@
-/*! parametrizedLocation - v0.1.0 - 2013-09-10
+/*! parametrizedLocation - v0.1.0 - 2013-09-12
 * https://plus.google.com/u/0/109953552136391486842
 * Copyright (c) 2013 Peter Ahlers (eonlepapillon); Licensed MIT */
 angular.module('parametrizedLocation',[]).config(['$provide', function($provide) {
@@ -87,17 +87,18 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
      *
      * Copied from angular.js ($http.buildUrl)
      */
-    function addExtraParams(url, params) {
+    function addExtraParams(urlOrg, params) {
       if (!params){
-        return url;
+        return urlOrg;
       }
 
       var parts = [],
+        url = '',
         hash = '';
 
-      if(url.split('#').length > 1){
-        url = url.slice(0, url.lastIndexOf('#'));
-        hash = url.slice(url.lastIndexOf('#') - 1);
+      if(urlOrg.split('#').length > 1){
+        url = urlOrg.slice(0, urlOrg.lastIndexOf('#'));
+        hash = urlOrg.slice(urlOrg.lastIndexOf('#'));
       }
 
       forEachSorted(params, function(value, key) {
@@ -112,9 +113,11 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
           if (angular.isObject(v)) {
             v = angular.toJson(v);
           }
-          parts.push(encodeUriQuery(key) + '=' + encodeUriQuery(v));
+          // parts.push(encodeUriSegment(key) + '=' + encodeUriSegment(v));
+          parts.push(key + '=' + v);
         });
       });
+
       return url + ((url.indexOf('?') === -1) ? '?' : '&') + parts.join('&') + hash;
     }
 
@@ -125,7 +128,7 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
      */
     function setLocationParams(url, params, addTheExtraParamsPlease) {
       var val,
-        encodedVal,
+        // encodedVal,
         urlParams = {},
         extraParams = {},
         extraParamsAdded = false;
@@ -141,8 +144,8 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
       angular.forEach(urlParams, function(_, urlParam){
         val = params[urlParam];
         if (angular.isDefined(val) && val !== null) {
-          encodedVal = encodeUriSegment(val);
-          url = url.replace(new RegExp(':' + urlParam + '(\\W|$)', 'g'), encodedVal + '$1');
+          // encodedVal = encodeUriSegment(val);
+          url = url.replace(new RegExp(':' + urlParam + '(\\W|$)', 'g'), val + '$1');
         } else {
           url = url.replace(new RegExp('(\/?):' + urlParam + '(\\W|$)', 'g'), function(match,
               leadingSlashes, tail) {
@@ -274,7 +277,7 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
 
         return cacheHashMethod.call($delegate, hash);
       };
-      
+
       return $delegate;
     }]);
   }]);

@@ -11,6 +11,18 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
       ' Licensed <%= pkg.license %> */\n',
     // Task configuration.
+    connect: {
+      options: {
+        port: 8000,
+        base: './app'
+      },
+      server: {
+        options: {
+          keepalive: true
+        }
+      },
+      testserver: {}
+    },
     concat: {
       options: {
         banner: '<%= banner %>',
@@ -32,6 +44,9 @@ module.exports = function(grunt) {
     },
     zip: {
       'dist/parametrizedLocation.zip': ['dist/<%= pkg.name %>.js', 'dist/<%= pkg.name %>.min.js']
+    },
+    bowerInstall: {
+      install: {}
     },
     jshint: {
       options: {
@@ -66,15 +81,19 @@ module.exports = function(grunt) {
       dev: {
         autoWatch: true
       }
-    },
+    }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-zip');
+
+  grunt.renameTask('bower', 'bowerInstall');
 
   // Default task.
   grunt.registerTask('default', ['test','build']);
@@ -83,6 +102,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['concat', 'uglify', 'zip']);
 
   // Test task
-  grunt.registerTask('test', ['karma:build']);
+  grunt.registerTask('test', ['bowerInstall', 'karma:build']);
 
 };

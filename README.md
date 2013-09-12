@@ -37,7 +37,7 @@ $location.hash(':foo', {foo:'bar'});
 ```
 
 ##Todo
-* tests
+* more tests (Statements: 88.16% (67 / 76), Branches: 71.11% (32 / 45), Functions: 82.35% (14 / 17), Lines: 88.16% (67 / 76))
 
 ##Thanks
 * Gruntfile inspiration: https://github.com/mgonto/restangular

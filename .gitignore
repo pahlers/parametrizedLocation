@@ -1,3 +1,8 @@
 node_modules
+bower_components
+coverage
+lib/angular
+lib/angular-mocks
+lib/angular-scenario
 *.sublime-project
 *.sublime-workspace

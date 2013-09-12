@@ -13,8 +13,11 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+
     files: [
-      'test/**/*Spec.js',
+      'lib/angular/angular.js',
+      'lib/angular-mocks/angular-mocks.js',
+      'lib/parametrizedLocation.js',
       'test/**/*Spec.js'
     ],
 
@@ -27,8 +30,21 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
+
+    //coverage
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'lib/parametrizedLocation.js': ['coverage']
+    },
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
 
     // web server port
     port: 9876,
@@ -41,6 +57,7 @@ module.exports = function(config) {
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
+    // logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
