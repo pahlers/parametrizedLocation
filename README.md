@@ -36,6 +36,12 @@ $location.hash(':foo', {foo:'bar'});
 //return $location, browser jumps to '#bar'
 ```
 
+$location.composeUrl (NOTE: maybe this is not the right place for this method)
+```js
+$location.composeUrl('/url/:id', {id:123, test:'test'});
+//return /url/123?test=test
+```
+
 ##Todo
 * more tests (Statements: 88.16% (67 / 76), Branches: 71.11% (32 / 45), Functions: 82.35% (14 / 17), Lines: 88.16% (67 / 76))
 

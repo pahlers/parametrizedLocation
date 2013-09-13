@@ -1,4 +1,4 @@
-/*! parametrizedLocation - v0.1.0 - 2013-09-12
+/*! parametrizedLocation - v0.2.0 - 2013-09-13
 * https://plus.google.com/u/0/109953552136391486842
 * Copyright (c) 2013 Peter Ahlers (eonlepapillon); Licensed MIT */
 angular.module('parametrizedLocation',[]).config(['$provide', function($provide) {
@@ -11,6 +11,25 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
      * @requires $location
      * @requires $delegate
      */
+
+    var PATH_MATCH = /^([^\?#]*)(\?([^#]*))?(#(.*))?$/;
+
+    /**
+     * Encode path using encodeUriSegment, ignoring forward slashes
+     *
+     * @param {string} path Path to encode
+     * @returns {string}
+     */
+    function encodePath(path) {
+      var segments = path.split('/'),
+          i = segments.length;
+
+      while (i--) {
+        segments[i] = encodeUriSegment(segments[i]);
+      }
+
+      return segments.join('/');
+    }
 
     /**
      * We need our custom method because encodeURIComponent is too aggressive and doesn't follow
@@ -93,7 +112,7 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
       }
 
       var parts = [],
-        url = '',
+        url = urlOrg,
         hash = '';
 
       if(urlOrg.split('#').length > 1){
@@ -113,7 +132,6 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
           if (angular.isObject(v)) {
             v = angular.toJson(v);
           }
-          // parts.push(encodeUriSegment(key) + '=' + encodeUriSegment(v));
           parts.push(key + '=' + v);
         });
       });
@@ -276,6 +294,47 @@ angular.module('parametrizedLocation',[]).config(['$provide', function($provide)
         }
 
         return cacheHashMethod.call($delegate, hash);
+      };
+
+      /**
+       * @ngdoc method
+       * @name ng.$location#composeUrl
+       * @methodOf ng.$location
+       *
+       * @description
+       * 
+       * Doesn't change anything. It's returns an url when called with a url template and the parameters.
+       * A nice way to generate url's in your controller for the view.
+       *
+       * @param {string} url A parametrized URL template with parameters prefixed by `:` as in
+       *    `/user/:username`. If you are using a URL with a port number (e.g.
+       *    `http://example.com:8080/api`), it will be respected.
+       * @param {Object} params Optional set of pre-bound parameters for this action. If any of the
+       *     parameter value is a function, it will be executed every time when a param value needs to be
+       *     obtained for a request (unless the param was overridden).
+       * @return {string} url
+       */
+      $delegate.composeUrl = function(url, params) {
+        if(!angular.isObject(params)){
+          return url;
+        }
+
+        var match = PATH_MATCH.exec(setLocationParams(url, params, true)),
+          path = '',
+          search = '',
+          hash = '';
+
+        if(match[1]){
+          path = encodePath(match[1]);
+        }
+        if(match[2] || match[1]){
+          search = '?' + encodeUriSegment(match[3] || '');
+        }
+        if(match[5]){
+          hash = '#' + encodeUriSegment(match[5]);
+        }
+
+        return path + search + hash;
       };
 
       return $delegate;
