@@ -21,7 +21,7 @@ describe('parametrizedLocation', function() {
     expect(url.hash).not.toBe(undefined);
   });
 
-  describe('methods', function() {
+  describe('method', function() {
     it('should provide common getters', function() {
       expect(url.absUrl()).toBe('http://server/');
       expect(url.protocol()).toBe('http');
@@ -33,7 +33,7 @@ describe('parametrizedLocation', function() {
       expect(url.url()).toBe('');
     });
 
-    it('should change the url', function() {
+    it('url should change the url', function() {
       url.url('/path/:test?search=:test2&b=c&d#:test4', {test:'AbbyCadabby', test2:'Adam T. Glasser', test3:'Alice Snuffleupagus', test4: 'Alistair Cookie'});
 
       expect(url.absUrl()).toBe('http://server/#/path/AbbyCadabby?search=Adam%20T.%20Glasser&b=c&d&test3=Alice%20Snuffleupagus#Alistair%20Cookie');
@@ -46,7 +46,7 @@ describe('parametrizedLocation', function() {
       expect(url.url()).toBe('/path/AbbyCadabby?search=Adam%20T.%20Glasser&b=c&d&test3=Alice%20Snuffleupagus#Alistair%20Cookie');
     });
 
-    it('should change the path', function() {
+    it('path should change the path', function() {
       url.path('/path/:test', {test:'AmazingMumford', test2:'Anne Phibian'});
 
       expect(url.absUrl()).toBe('http://server/#/path/AmazingMumford');
@@ -59,7 +59,7 @@ describe('parametrizedLocation', function() {
       expect(url.url()).toBe('/path/AmazingMumford');
     });
 
-    it('should change the hash', function() {
+    it('hash should change the hash', function() {
       url.hash('hash\::test', {test:'Aristotle', test2: 'Baby Bear'});
 
       expect(url.absUrl()).toBe('http://server/##hash:Aristotle');
@@ -70,6 +70,12 @@ describe('parametrizedLocation', function() {
       expect(url.search()).toEqual({});
       expect(url.hash()).toBe('hash:Aristotle');
       expect(url.url()).toBe('#hash:Aristotle');
+    });
+
+    it('composeUrl should change the url', function() {
+      var test = url.composeUrl('/path/:test?search=:test2&b=c&d#:test4', {test:'AbbyCadabby', test2:'Adam T. Glasser', test3:'Alice Snuffleupagus', test4: 'Alistair Cookie'});
+
+      expect(test).toBe('/path/AbbyCadabby?search=Adam%20T.%20Glasser&b=c&d&test3=Alice%20Snuffleupagus#Alistair%20Cookie');
     });
 
   });

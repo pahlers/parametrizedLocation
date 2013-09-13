@@ -1,6 +1,6 @@
 {
   "name": "parametrizedLocation",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "homepage": "https://github.com/eonlepapillon/parametrizedLocation",
   "authors": [
     "Peter Ahlers (eonlepapillon)"
@@ -20,7 +20,6 @@
     "$location",
     "$resource",
     "parametrized",
-    "p",
     "params",
     "url",
     "path",
