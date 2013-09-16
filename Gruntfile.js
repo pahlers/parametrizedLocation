@@ -45,9 +45,6 @@ module.exports = function(grunt) {
     zip: {
       'dist/parametrizedLocation.zip': ['dist/<%= pkg.name %>.js', 'dist/<%= pkg.name %>.min.js']
     },
-    bowerInstall: {
-      install: {}
-    },
     jshint: {
       options: {
         curly: true,

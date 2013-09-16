@@ -92,6 +92,20 @@ describe('parametrizedLocation', function() {
       expect(composeUrl(url, params)).toBe('/path/AbbyCadabby?search=Adam%20T.%20Glasser&b=c&d&test3=Alice%20Snuffleupagus#Alistair%20Cookie');
     });
 
+    it('paramsUrl should not have an question after only a path', function() {
+      var url = '/path/:test',
+        params = {test:'AbbyCadabby'};
+
+      expect(composeUrl(url, params)).toBe('/path/AbbyCadabby');
+    });
+
+    it('paramsUrl should not have an question after only a path and hash', function() {
+      var url = '/path/:test#hash',
+        params = {test:'AbbyCadabby'};
+
+      expect(composeUrl(url, params)).toBe('/path/AbbyCadabby#hash');
+    });
+
   });
 
 });
