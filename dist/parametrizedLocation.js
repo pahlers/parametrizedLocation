@@ -1,4 +1,4 @@
-/*! parametrizedLocation - v0.3.0 - 2013-09-16
+/*! parametrizedLocation - v0.3.1 - 2013-09-16
 * https://plus.google.com/u/0/109953552136391486842
 * Copyright (c) 2013 Peter Ahlers (eonlepapillon); Licensed MIT */
 (function(window, document, undefined) {
@@ -336,7 +336,7 @@
         if(match[1]){
           path = encodePath(match[1]);
         }
-        if(match[2] || match[1]){
+        if((match[2] || match[1]) && match[3]){
           search = '?' + encodeUriSegment(match[3] || '');
         }
         if(match[5]){
