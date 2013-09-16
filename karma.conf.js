@@ -2,6 +2,8 @@
 // Generated on Tue Sep 10 2013 10:36:34 GMT+0200 (CEST)
 
 module.exports = function(config) {
+  'use strict';
+  
   config.set({
 
     // base path, that will be used to resolve files and exclude
@@ -15,8 +17,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
 
     files: [
-      'lib/angular/angular.js',
-      'lib/angular-mocks/angular-mocks.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       'lib/parametrizedLocation.js',
       'test/**/*Spec.js'
     ],
@@ -30,7 +32,8 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-    reporters: ['progress', 'coverage'],
+    // reporters: ['progress', 'coverage'],
+    reporters: ['progress'],
 
 
     //coverage

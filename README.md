@@ -36,10 +36,17 @@ $location.hash(':foo', {foo:'bar'});
 //return $location, browser jumps to '#bar'
 ```
 
-$location.composeUrl (NOTE: maybe this is not the right place for this method)
+Filter paramsUrl
 ```js
-$location.composeUrl('/url/:id', {id:123, test:'test'});
+$filter('paramsUrl')('/url/:id', {id:123, test:'test'});
 //return /url/123?test=test
+```
+
+Or
+
+```html
+<a href="{url | paramsUrl:params}">…</a>
+<!-- <a href="/url/123?test=test">…</a> -->
 ```
 
 ##Todo
@@ -47,4 +54,4 @@ $location.composeUrl('/url/:id', {id:123, test:'test'});
 
 ##Thanks
 * Gruntfile inspiration: https://github.com/mgonto/restangular
-* Code inspiration: Angular $http and $resource
+* Code inspiration: Angular $location, $http and $resource

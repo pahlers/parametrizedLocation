@@ -85,15 +85,12 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-zip');
-
-  grunt.renameTask('bower', 'bowerInstall');
 
   // Default task.
   grunt.registerTask('default', ['test','build']);
@@ -102,6 +99,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['concat', 'uglify', 'zip']);
 
   // Test task
-  grunt.registerTask('test', ['bowerInstall', 'karma:build']);
+  grunt.registerTask('test', ['karma:build']);
 
 };
