@@ -1,6 +1,6 @@
 #parametrizedLocation
 
-Extend angular.$location with support for a parametrized URL template with parameters (like angular.$resource) prefixed by `:`.
+Extend angular.$location with support for a parametrized URL template with parameters (like angular.$resource) prefixed by `:`. And added a filter paramsUrl.
 
 $resource documentation: http://docs.angularjs.org/api/ngResource.$resource
 $location documentation: http://docs.angularjs.org/api/ng.$location
@@ -36,7 +36,8 @@ $location.hash(':foo', {foo:'bar'});
 //return $location, browser jumps to '#bar'
 ```
 
-Filter paramsUrl
+##Filters
+paramsUrl
 ```js
 $filter('paramsUrl')('/url/:id', {id:123, test:'test'});
 //return /url/123?test=test
